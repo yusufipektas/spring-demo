@@ -25,6 +25,12 @@ public class ClientController {
         return clientRepository.findAll();
     }
 
+    @GetMapping("clients/{id}")
+    public Client getClient(@PathVariable String id) {
+        Optional<Client> clientFound = clientRepository.findById(id);
+        return clientFound.orElse(null);
+    }
+
     @PutMapping("clients/{id}")
     public Client updateClient(@PathVariable String id, @RequestBody Client client) {
         Optional<Client> clientFound = clientRepository.findById(id);
